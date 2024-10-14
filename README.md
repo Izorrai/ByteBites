@@ -15,4 +15,3 @@ Nombre de la obra, autor, categoria, fecha, cultura e imagen.
 ## UNA PAGINA DE FEEDBACK
 
 Pagina de feedback y ardenar obras por likes de los lectores.
-
