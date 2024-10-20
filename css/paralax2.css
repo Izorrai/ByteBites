@@ -1,0 +1,104 @@
+@charset "utf-8";
+/* CSS Document */
+
+body, html
+{
+	height:100%;
+	margin:0;
+	font-family:'Ubuntu' sans-serif;
+	line-height:180%;
+	color: #666;
+	text-align:center;
+	
+}
+.parallax1
+{
+	background-image:url(../imagenes/healthy-vegetable-mix-served-wooden-platter-black-table.jpg);
+	min-height:100%;
+	
+}
+
+.parallax2
+{
+	background-image:url(../imagenes/—Pngtree—restaurant\ view\ through\ table\ texture_15132473\ \(1\).jpg);
+	min-height:100%;
+}
+.parallax3
+{
+	background-image:url(../imagenes/mesa-de-comida.jpg);
+	min-height:80%;
+}
+.parallax4
+{
+	background-image:url(../imagenes/35733-comida-1024x640.jpg);
+	min-height:100%;
+}
+.parallax1, .parallax2, .parallax3, .parallax4
+{
+position:relative;
+opacity:0.7;
+background-position:center;
+background-size:cover;
+background-repeat:no-repeat;
+background-attachment:fixed;
+max-width:100%;
+}
+.cabecera, .cabecera2, .cabecera3, .cabecera4
+{
+position:absolute;
+color:#FFF;
+font-size:300%;
+top:38%;
+width:100%;
+text-transform:uppercase;
+letter-spacing:8px;
+text-shadow:#000;
+
+}
+.texto1
+{
+text-align:center;
+
+}
+.informacion
+{
+width:100%;
+
+}
+
+.informacion a
+{
+background:#666;
+border-radius:10px;
+color:#FFF;
+padding:20px;;
+
+
+}
+.informacion a:hover
+{
+cursor:pointer;
+background:#000;
+border-radius:10px;
+color:#CCC;
+
+}
+
+@media screen and (min-width:760px)
+{
+
+	
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
