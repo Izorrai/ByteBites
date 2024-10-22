@@ -4,7 +4,7 @@ import Post from "./postRecetas.js";
 
 class Blog {
     
-    constructor(title, urtitle, content, content2, sectionId) {
+    constructor(title, urltitle, content, content2, sectionId) {
         this.title = title;
         this.urltitle = urltitle;
         this.content = content;
@@ -24,29 +24,22 @@ class Blog {
         this.mainSection.appendChild(this.postSection); 
 
         
-        this.posts = [];
+        this.recetasLectores = [];
         
-        this.searchFilter = "";
-
+        
     }
 
     
     
-    createPost(title, content) {
+    createPost(title,urltitle, content, content2) {
        
-        const newPost = new Post(title, content, this); 
-        this.posts.push(newPost);
+        const newPost = new Post(title, urltitle, content, content2, this); 
+        this.recetasLectores.push(newPost);
         this.postSection.appendChild(newPost.html);
     }
 
     
-    removePost(id) {
-        
-        const indexToRemove = this.posts.findIndex(post => post.id === id);
-        
-        this.posts.splice(indexToRemove, 1); 
-        console.log(this.posts); 
-    }
+    
 }
 
 

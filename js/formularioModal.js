@@ -10,7 +10,8 @@ class FormularioModal {
         
         this.modalFormulario = document.createElement("div");
         this.modalFormulario.classList.add("modal-formulario", "hidden-formulario"); 
-        
+        this.contenedor = document.createElement("div");
+        this.contenedor.classList.add("selector");
         
         const tituloElemento = document.createElement("h2");
         const botonCerrar = document.createElement("img");
@@ -20,8 +21,9 @@ class FormularioModal {
 
         this.modalFormulario.appendChild(tituloElemento);
         
-        
+
         document.body.appendChild(this.modalFormulario);
+        tituloElemento.appendChild(this.contenedor);
         tituloElemento.appendChild(botonCerrar);
         
         const hamburguesa = document.getElementsByClassName("hamburguesa")[0];
