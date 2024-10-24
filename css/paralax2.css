@@ -1,0 +1,180 @@
+@charset "utf-8";
+/* CSS Document */
+
+body, html
+{
+	height:100%;
+	margin:0;
+	font-family:'Didot';
+	line-height:180%;
+	color: black;
+	text-align:center;
+	background-color: white;
+	
+}
+.parallax1
+{
+	
+	background-color: black;
+	min-height:100%;
+	
+}
+
+.parallax2
+{
+	background-image:url(../fotos/recetando.jpeg);
+	min-height:100%;
+}
+.parallax3
+{
+	background-image:url(../imagenes/mesa-de-comida.jpg);
+	min-height:80%;
+}
+.parallax4
+{
+	background-image:url(../imagenes/clem-onojeghuo-zlABb6Gke24-unsplash.jpg);
+	min-height:100%;
+}
+.parallax1, .parallax2, .parallax3, .parallax4
+{
+position:relative;
+opacity:0.8;
+background-position:center;
+background-size:cover;
+background-repeat:no-repeat;
+background-attachment:fixed;
+max-width:100%;
+}
+.parallax1 {
+	opacity: 1;
+}
+.cabecera, .cabecera2, .cabecera3, .cabecera4
+{
+position:absolute;
+color:#FFF;
+font-size:300%;
+top:45%;
+width:100%;
+text-transform:uppercase;
+letter-spacing:18px;
+text-shadow:#000;
+
+}
+.texto1
+{
+text-align:center;
+
+}
+.informacion
+{
+width:100%;
+
+}
+
+.informacion a
+{
+background:#666;
+border-radius:10px;
+color:#FFF;
+padding:20px;;
+
+
+}
+.informacion a:hover
+{
+cursor:pointer;
+background:#000;
+border-radius:10px;
+color:#CCC;
+
+}
+
+
+/*carrusel*/
+
+#miCarrusel {
+    position: relative;
+    max-width: 100%; 
+    margin: auto;
+    overflow: hidden; 
+    border-radius: 0px; 
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background-color: rgba(255, 255, 255, 1);
+}
+
+#miCarrusel div img {
+    width: 370px; 
+    height: auto; 
+    transition: transform 0.3s ease; 
+	margin: 20px; 
+	top: 30%;
+	margin-top: 85px;
+}
+
+#miCarrusel div img:hover {
+    transform: scale(1.1); 
+	opacity: 0.8; 
+	cursor: pointer;
+}
+
+#miCarrusel button {
+    position: absolute;
+    top: 43%;
+    transform: translateY(-50%);
+    background-color: transparent; 
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px; 
+    z-index: 10; 
+}
+
+#miCarrusel button:first-of-type {
+    left: 10px;
+}
+
+#miCarrusel button:last-of-type {
+    right: 10px;
+}
+
+#miCarrusel article {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#miCarrusel section > section {
+    display: flex; 
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#miCarrusel section > section button {
+    margin: 0 5px;
+}
+	
+
+	
+	
+
+
+
+@media screen and (min-width:760px)
+{
+
+	
+
+
+
+
+
+
+
+
+
+}
+
+
+
+

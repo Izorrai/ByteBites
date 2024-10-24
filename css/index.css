@@ -1,0 +1,56 @@
+@charset "utf-8";
+/* CSS Document */
+
+*
+{
+padding:0;
+margin:0;	
+box-sizing:border-box;
+list-style:none;
+text-decoration:none;
+}
+
+.menu {
+    background-color: white;
+    text-align: center;
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.menu li {
+    margin: 0 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: gray;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .menu ul {
+        flex-direction: column;
+    }
+
+    .menu li {
+        margin: 10px 0;
+    }
+}
+
+
+
+
+
