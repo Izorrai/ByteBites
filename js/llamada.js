@@ -13,7 +13,7 @@ const health = [
      "vegan", "vegetarian"
 ];
 
- const alergias = [
+const alergias = [
     "celery-free", "egg-free", "fish-free", "gluten-free",
      "peanut-free", "pescatarian", "shellfish-free"
 ];
@@ -46,7 +46,8 @@ let selectedComidas = [];
 let selectedPaises = [];
 
 
-async function fetchData(query, searchParams = {}) {
+let nextPageUrl = '';
+export async function fetchData(query, searchParams = {}) {
     try {
         const url = new URL(BASE_URL);
         url.searchParams.append("type", "public");
@@ -80,9 +81,10 @@ async function fetchData(query, searchParams = {}) {
         for (const key of Object.keys(searchParams)) {
             url.searchParams.append(key, searchParams[key]);
         }
-
+        console.log(url.toString());
         const response = await fetch(url.toString());
         const responseData = await response.json();
+        nextPageUrl = responseData._links.next.href;
         return responseData;
     } catch (error) {
         console.error(error);
@@ -90,8 +92,19 @@ async function fetchData(query, searchParams = {}) {
     }
 }
 
+export async function fetchDataNextPage() {
+    try {
+        const response = await fetch(nextPageUrl);
+        const responseData = await response.json();
+        nextPageUrl = responseData._links.next.href;
+        return responseData;
+    } catch (error) {
+        console.error(error);
+        return { error: error.message };
+    }
+}
 function createSearchInput() {
-    const contenedor = document.getElementById("search-container"); 
+    const contenedor = document.getElementById("search-container");
     inputElement = document.createElement("input");
     inputElement.placeholder = "Buscar recetas...";
     contenedor.appendChild(inputElement);
@@ -328,21 +341,21 @@ function crearSelectorCalorias() {
     const opcionSelect = document.createElement("option");
     opcionSelect.innerText = "Calorias";
     opcionSelect.value = "";
-    elementoSelect.appendChild(opcionSelect); 
+    elementoSelect.appendChild(opcionSelect);
 
     calorieRanges.forEach(caloria => {
         const opcionSelect = document.createElement("option");
-        opcionSelect.innerText = caloria.text;  
-        opcionSelect.value = caloria.value;       
-        elementoSelect.appendChild(opcionSelect); 
+        opcionSelect.innerText = caloria.text;
+        opcionSelect.value = caloria.value;
+        elementoSelect.appendChild(opcionSelect);
     });
     
     
     selector.appendChild(elementoSelect);
     elementoSelect.addEventListener("change", (e) => {
-        tipoCaloria = e.target.value; 
+        tipoCaloria = e.target.value;
     });
-    
+
     return elementoSelect;
 }
 
@@ -492,6 +505,7 @@ async function displayResults(query) {
             titulo.innerText = receta.label;
             imagen.src = receta.image;
             link.href = receta.url;
+            link.target = "_blank";
             link.innerText = "Ir a la receta";
             //ingredientes.innerText = receta.ingredients.map(ing => ing.text).join(", ");
             calories.innerText = receta.calories;
