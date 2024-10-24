@@ -10,43 +10,45 @@ list-style:none;
 text-decoration:none;
 }
 
-.menu
-{
-position: fixed;
-z-index: 3;
-width: 100%;
-top:0px;
+.menu {
+    background-color: white;
+    text-align: center;
 }
 
-.menu li
-{
-position: absolute;
-display: inline-block;
-font-size: 50px;
-color: aliceblue;
-text-align: left;
-}
-.hamburguesa
-{
-left:0px;
-padding-left: 5px;
-}
-.hamburguesa{
-cursor: pointer;    
-}
-.blog
-{
-padding-top: 20px;
-padding-right: 10px;
-right: 0px;;    
-}
-.blog:hover
-{
-cursor: pointer;
-
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
 }
 
+.menu li {
+    margin: 0 20px;
+}
 
+.menu a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: gray;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .menu ul {
+        flex-direction: column;
+    }
+
+    .menu li {
+        margin: 10px 0;
+    }
+}
 
 
 
