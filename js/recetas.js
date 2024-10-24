@@ -1,4 +1,4 @@
-
+/*
 const datos= {
   "from": 1,
   "to": 20,
@@ -15291,4 +15291,4 @@ function crearRecetas() {
 }
 
 crearRecetas();
-  
+  */

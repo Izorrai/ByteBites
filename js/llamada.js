@@ -10,13 +10,13 @@ const cuisineType = [
 ];
 
 const health = [
-     "keto-friendly", "Mediterranean", "pescatarian",
-     "vegan", "vegetarian"
+    "keto-friendly", "Mediterranean", "pescatarian",
+    "vegan", "vegetarian"
 ];
 
- const alergias = [
+const alergias = [
     "celery-free", "egg-free", "fish-free", "gluten-free",
-     "peanut-free", "pescatarian", "shellfish-free", "soy-free"
+    "peanut-free", "pescatarian", "shellfish-free", "soy-free"
 ];
 
 
@@ -34,34 +34,36 @@ const mealType = ["Breakfast", "Dinner", "Lunch", "Snack"];
 
 
 let inputElement;
-let tipoDieta = ""; 
+let tipoDieta = "";
 let tipoPais = "";
 let tipoAlergia = "";
 let tipoCaloria = "";
-let tipoMealType= "";
+let tipoMealType = "";
 
-async function fetchData(query, searchParams = {}) {
+let nextPageUrl = '';
+export async function fetchData(query, searchParams = {}) {
     try {
         const url = new URL(BASE_URL);
         url.searchParams.append("type", "public");
         url.searchParams.append("app_id", app_id);
         url.searchParams.append("app_key", app_key);
         url.searchParams.append("q", query);
-        
+
         if (tipoPais) url.searchParams.append("cuisineType", tipoPais);
         if (tipoDieta) url.searchParams.append("health", tipoDieta);
         if (tipoAlergia) url.searchParams.append("health", tipoAlergia);
         if (tipoCaloria) url.searchParams.append("calories", tipoCaloria)
         if (tipoMealType) url.searchParams.append("mealType", tipoMealType)
 
-        
-        
+
+
         for (const key of Object.keys(searchParams)) {
             url.searchParams.append(key, searchParams[key]);
         }
-
+        console.log(url.toString());
         const response = await fetch(url.toString());
         const responseData = await response.json();
+        nextPageUrl = responseData._links.next.href;
         return responseData;
     } catch (error) {
         console.error(error);
@@ -69,8 +71,19 @@ async function fetchData(query, searchParams = {}) {
     }
 }
 
+export async function fetchDataNextPage() {
+    try {
+        const response = await fetch(nextPageUrl);
+        const responseData = await response.json();
+        nextPageUrl = responseData._links.next.href;
+        return responseData;
+    } catch (error) {
+        console.error(error);
+        return { error: error.message };
+    }
+}
 function createSearchInput() {
-    const contenedor = document.getElementById("search-container"); 
+    const contenedor = document.getElementById("search-container");
     inputElement = document.createElement("input");
     inputElement.placeholder = "Buscar recetas...";
     contenedor.appendChild(inputElement);
@@ -83,18 +96,18 @@ function crearSelectorDieta() {
     opcionSelect.innerText = "Diet";
     opcionSelect.value = "";
     elementoSelectDieta.appendChild(opcionSelect);
-    
+
     health.forEach(dieta => {
         const opcionSelect = document.createElement("option");
-        opcionSelect.innerText = dieta;  
-        opcionSelect.value = dieta;       
-        elementoSelectDieta.appendChild(opcionSelect); 
+        opcionSelect.innerText = dieta;
+        opcionSelect.value = dieta;
+        elementoSelectDieta.appendChild(opcionSelect);
     });
 
     selectorDieta.appendChild(elementoSelectDieta);
-    
+
     elementoSelectDieta.addEventListener("change", (e) => {
-        tipoDieta = e.target.value;   
+        tipoDieta = e.target.value;
     });
 
     return selectorDieta;
@@ -104,23 +117,23 @@ function crearSelectorAlergias() {
     const selectorAlergia = document.getElementById("selector");
     const elementoSelectAlergia = document.createElement("select");
     const opcionSelect = document.createElement("option");
-    opcionSelect.innerText = "Todas las Alergias";  
+    opcionSelect.innerText = "Todas las Alergias";
     opcionSelect.value = "";
     elementoSelectAlergia.appendChild(opcionSelect);
-    
-    
+
+
     alergias.forEach(alergia => {
         const opcionSelect = document.createElement("option");
-        opcionSelect.innerText = alergia;  
-        opcionSelect.value = alergia;       
-        elementoSelectAlergia.appendChild(opcionSelect); 
+        opcionSelect.innerText = alergia;
+        opcionSelect.value = alergia;
+        elementoSelectAlergia.appendChild(opcionSelect);
     });
 
     selectorAlergia.appendChild(elementoSelectAlergia);
-    
-    
+
+
     elementoSelectAlergia.addEventListener("change", (e) => {
-        tipoAlergia = e.target.value;   
+        tipoAlergia = e.target.value;
     });
 
     return selectorAlergia;
@@ -130,20 +143,20 @@ function crearMealType() {
     const selector = document.getElementById("selector");
     const elementoSelect = document.createElement("select");
     const opcionSelect = document.createElement("option");
-    opcionSelect.innerText = "All type of meals"; 
+    opcionSelect.innerText = "All type of meals";
     opcionSelect.value = "";
-    elementoSelect.appendChild(opcionSelect); 
+    elementoSelect.appendChild(opcionSelect);
 
     mealType.forEach(meal => {
         const opcionSelect = document.createElement("option");
         opcionSelect.innerText = meal;
         opcionSelect.value = meal;
-        elementoSelect.appendChild(opcionSelect); 
+        elementoSelect.appendChild(opcionSelect);
     });
 
     selector.appendChild(elementoSelect);
     elementoSelect.addEventListener("change", (e) => {
-        tipoMealType = e.target.value; 
+        tipoMealType = e.target.value;
     });
 
     return elementoSelect;
@@ -158,20 +171,20 @@ function crearSelectorPais() {
     const opcionSelect = document.createElement("option");
     opcionSelect.innerText = "Countries";
     opcionSelect.value = "";
-    elementoSelect.appendChild(opcionSelect); 
+    elementoSelect.appendChild(opcionSelect);
 
     cuisineType.forEach(pais => {
         const opcionSelect = document.createElement("option");
-        opcionSelect.innerText = pais;  
-        opcionSelect.value = pais;       
-        elementoSelect.appendChild(opcionSelect); 
+        opcionSelect.innerText = pais;
+        opcionSelect.value = pais;
+        elementoSelect.appendChild(opcionSelect);
     });
 
     selector.appendChild(elementoSelect);
     elementoSelect.addEventListener("change", (e) => {
-        tipoPais = e.target.value; 
+        tipoPais = e.target.value;
     });
-    
+
     return elementoSelect;
 }
 
@@ -183,20 +196,20 @@ function crearSelectorCalorias() {
     const opcionSelect = document.createElement("option");
     opcionSelect.innerText = "Calorias";
     opcionSelect.value = "";
-    elementoSelect.appendChild(opcionSelect); 
+    elementoSelect.appendChild(opcionSelect);
 
     calorieRanges.forEach(caloria => {
         const opcionSelect = document.createElement("option");
-        opcionSelect.innerText = caloria.text;  
-        opcionSelect.value = caloria.value;       
-        elementoSelect.appendChild(opcionSelect); 
+        opcionSelect.innerText = caloria.text;
+        opcionSelect.value = caloria.value;
+        elementoSelect.appendChild(opcionSelect);
     });
 
     selector.appendChild(elementoSelect);
     elementoSelect.addEventListener("change", (e) => {
-        tipoCaloria = e.target.value; 
+        tipoCaloria = e.target.value;
     });
-    
+
     return elementoSelect;
 }
 
@@ -220,8 +233,8 @@ function crearBotonBusqueda() {
 
 
 async function displayResults(query) {
-    const datos = await fetchData(query, { });
-    
+    const datos = await fetchData(query, {});
+
     const contenedor = document.getElementById("results");
     contenedor.innerHTML = "";
 
@@ -240,6 +253,7 @@ async function displayResults(query) {
             titulo.innerText = receta.label;
             imagen.src = receta.image;
             link.href = receta.url;
+            link.target = "_blank";
             link.innerText = "Ir a la receta";
             //ingredientes.innerText = receta.ingredients.map(ing => ing.text).join(", ");
             calories.innerText = receta.calories;
@@ -266,4 +280,3 @@ crearSelectorPais()
 crearSelectorCalorias()
 crearMealType()
 crearBotonBusqueda()
- 

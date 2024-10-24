@@ -5,22 +5,24 @@ body, html
 {
 	height:100%;
 	margin:0;
-	font-family:'Ubuntu' sans-serif;
+	font-family:'Didot';
 	line-height:180%;
-	color: #666;
+	color: black;
 	text-align:center;
+	background-color: white;
 	
 }
 .parallax1
 {
-	background-image:url(../imagenes/healthy-vegetable-mix-served-wooden-platter-black-table.jpg);
+	
+	background-color: black;
 	min-height:100%;
 	
 }
 
 .parallax2
 {
-	background-image:url(../imagenes/—Pngtree—restaurant\ view\ through\ table\ texture_15132473\ \(1\).jpg);
+	background-image:url(../fotos/recetando.jpeg);
 	min-height:100%;
 }
 .parallax3
@@ -30,28 +32,31 @@ body, html
 }
 .parallax4
 {
-	background-image:url(../imagenes/35733-comida-1024x640.jpg);
+	background-image:url();
 	min-height:100%;
 }
 .parallax1, .parallax2, .parallax3, .parallax4
 {
 position:relative;
-opacity:0.7;
+opacity:0.8;
 background-position:center;
 background-size:cover;
 background-repeat:no-repeat;
 background-attachment:fixed;
 max-width:100%;
 }
+.parallax1 {
+	opacity: 1;
+}
 .cabecera, .cabecera2, .cabecera3, .cabecera4
 {
 position:absolute;
 color:#FFF;
 font-size:300%;
-top:38%;
+top:45%;
 width:100%;
 text-transform:uppercase;
-letter-spacing:8px;
+letter-spacing:18px;
 text-shadow:#000;
 
 }
@@ -83,6 +88,77 @@ border-radius:10px;
 color:#CCC;
 
 }
+
+
+/*carrusel*/
+
+#miCarrusel {
+    position: relative;
+    max-width: 100%; 
+    margin: auto;
+    overflow: hidden; 
+    border-radius: 0px; 
+	margin-top: 250px;
+	margin-bottom: 130px;
+	background-color: rgba(255, 255, 255, 1);
+}
+
+#miCarrusel div img {
+    width: 370px; 
+    height: auto; 
+    transition: transform 0.3s ease; 
+	margin: 20px; 
+	top: 30%;
+	margin-top: 85px;
+}
+
+#miCarrusel div img:hover {
+    transform: scale(1.1); 
+	opacity: 0.8; 
+	cursor: pointer;
+}
+
+#miCarrusel button {
+    position: absolute;
+    top: 43%;
+    transform: translateY(-50%);
+    background-color: transparent; 
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px; 
+    z-index: 10; 
+}
+
+#miCarrusel button:first-of-type {
+    left: 10px;
+}
+
+#miCarrusel button:last-of-type {
+    right: 10px;
+}
+
+#miCarrusel article {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#miCarrusel section > section {
+    display: flex; 
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#miCarrusel section > section button {
+    margin: 0 5px;
+}
+	
+
+	
+	
+
+
 
 @media screen and (min-width:760px)
 {
