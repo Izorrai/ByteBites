@@ -1,7 +1,7 @@
 
 
 
-import ModalBlog from "./blogModal.js";
+/* import ModalBlog from "./blogModal.js";
 const modalBlog = new ModalBlog("NUEVA RECETA");
 modalBlog.crearModalBlog();
 
@@ -110,3 +110,4 @@ form.addEventListener("submit", (e) => {
 
 
 
+ */
