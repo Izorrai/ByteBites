@@ -42,8 +42,7 @@ box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
     padding: 0 1rem;
     font-size: 16px;
     font-weight: 300;
-    overflow: hidden;
-    overflow-y: auto;
+
 }
 
 .contenedor .carta a{
@@ -72,7 +71,7 @@ box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
     margin: 20px;
     text-align: center;
     transition: all 0.25s;
-    background-color: rgb(7, 7, 7);
+    background-color: white;
     z-index: 30;
     }
     
@@ -89,20 +88,18 @@ box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
     
     .results .carta h4{
         font-weight: 600;
-        color: white;
     }
     .results .carta p{
         padding: 0 1rem;
         font-size: 16px;
         font-weight: 300;
-        color: aliceblue;
     
     }
     
     .results .carta a{
         font-weight: 500;
         text-decoration: none;
-        color: #dba634;
+        color: #3498db;
     
     }
 

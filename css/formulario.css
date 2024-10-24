@@ -30,27 +30,11 @@ option:hover {
 #selectorAlergia.hidden,
 #selectorPais.hidden,
 #selectorCalorias.hidden,
-#selectorBoton.hidden,
-#selectorBotonReset.hidden{
+#selectorBoton.hidden {
 display: none;
 transition: opacity 0.3s ease-in-out;
 }
 
-#selectorPregunta
-{
-height: 300px;
-padding-top: 50px;
-}
-#selectorPregunta h1
-{
-margin: 20px;
-}
-
-#selectorPregunta h1:hover{
-    
-    border-radius: 10px;
-    cursor: pointer;
-}
 
 #selectorComida,
 #selectorDieta,
@@ -101,7 +85,7 @@ label {
 
 ::placeholder
 {
-color:rgb(248, 245, 245);
+color:grey;
 font-family:Verdana, Geneva, sans-serif;
 font-style:inherit;	
 }
@@ -112,26 +96,9 @@ resize:none;
 }
 input, select, textarea{
     border-radius: 20px;
-    background-color: rgb(3, 3, 3);
+    background-color: rgb(195, 241, 226);
     padding: 8px 12px;
     border: 1px solid #001401;
     outline: none;
-    color: white;
-    font-size: 20px;
-
-}
-
-button
-{
-    border-radius: 20px;
-    padding: 12px 12px;
-    font-size: 20px;
-}
-
-button:hover
-{
-cursor: pointer;
-color: white;
-background-color: black;
 
 }

@@ -37,8 +37,6 @@ hidePais();
 hideCalorias();
 hideBoton();
 hideBuscar();
-hideBotonReset();
-
 
 let inputElement;
 let tipoCaloria = "";
@@ -49,7 +47,6 @@ let selectedPaises = [];
 
 
 let nextPageUrl = '';
-
 export async function fetchData(query, searchParams = {}) {
     try {
         const url = new URL(BASE_URL);
@@ -183,14 +180,6 @@ function hideBoton(){
     selectorBoton.classList.add("hidden");
 }
 
-function showBotonReset(){
-    const selectorBoton = document.getElementById("selectorBotonReset");
-    selectorBoton.classList.remove("hidden");
-}
-function hideBotonReset(){
-    const selectorBoton = document.getElementById("selectorBotonReset");
-    selectorBoton.classList.add("hidden");
-}
 
 
 function createPregunta() {
@@ -200,7 +189,7 @@ function createPregunta() {
     
     pregunta.addEventListener("click", async () => {
         hidePregunta();
-        showComida(); 
+        showDieta(); 
     });
 
     
@@ -211,10 +200,11 @@ function createPregunta() {
 }
 
 
+
 function createComidaCheckboxes() {
     const container = document.getElementById("selectorComida");
     const pregunta = document.createElement("h1");
-    pregunta.innerText = "¿QUE TE APETECE?";
+    pregunta.innerText = "¿QUIERES QUE TE RECOMENDEMOS ALGO PARA COMER?";
     const checkboxContainer = document.createElement("div");
         checkboxContainer.classList.add("tipos-comida");
 
@@ -351,8 +341,6 @@ function crearSelectorCalorias() {
     const opcionSelect = document.createElement("option");
     opcionSelect.innerText = "Calorias";
     opcionSelect.value = "";
-    
-    
     elementoSelect.appendChild(opcionSelect);
 
     calorieRanges.forEach(caloria => {
@@ -362,7 +350,7 @@ function crearSelectorCalorias() {
         elementoSelect.appendChild(opcionSelect);
     });
     
-    selector.appendChild(pregunta);
+    
     selector.appendChild(elementoSelect);
     elementoSelect.addEventListener("change", (e) => {
         tipoCaloria = e.target.value;
@@ -371,76 +359,55 @@ function crearSelectorCalorias() {
     return elementoSelect;
 }
 
+function crearBotonPregunta() {
+    const boton = document.getElementById("selectorPregunta");
+    const searchButton = document.createElement("button");
+    searchButton.classList.add("boton-pregunta")
+    searchButton.innerText = "Siguiente";
+
+    searchButton.addEventListener("click", async () => {
+        hidePregunta();
+        showComida(); 
+    });
+
+    boton.appendChild(searchButton);
+}
+
+
 
 function crearBotonComida() {
-    
-    
     const boton = document.getElementById("selectorComida");
     const searchButton = document.createElement("button");
     searchButton.classList.add("boton-comida")
     searchButton.innerText = "Siguiente";
 
-     searchButton.addEventListener("click", async () => {
-                hideComida();
-                showDieta(); 
-        
-           
-
+    searchButton.addEventListener("click", async () => {
+        hideComida();
+        showDieta(); 
     });
 
-    
     boton.appendChild(searchButton);
-    
 }
 
 function crearBotonDieta() {
-
-    const boton2 = document.getElementById("selectorDieta");
-    const searchButtonAtras = document.createElement("button");
-    searchButtonAtras.classList.add("boton-Dieta-atras")
-    searchButtonAtras.innerText = "Atras";
-
     const boton = document.getElementById("selectorDieta");
     const searchButton = document.createElement("button");
     searchButton.classList.add("boton-Dieta")
     searchButton.innerText = "Siguiente";
 
-   
-   
-    searchButtonAtras.addEventListener("click", async () => {
-        showComida();
-        hideDieta(); 
-   
-    });
     searchButton.addEventListener("click", async () => {
     hideDieta();
     showAlergia();    
     });
 
-   
     boton.appendChild(searchButton);
-    boton2.appendChild(searchButtonAtras);
 }
 
 function crearBotonAlergia() {
-
-    const boton2 = document.getElementById("selectorAlergia");
-    const searchButtonAtras = document.createElement("button");
-    searchButtonAtras.classList.add("boton-Alergia-atras")
-    searchButtonAtras.innerText = "Atras";
-
-    
     const boton = document.getElementById("selectorAlergia");
     const searchButton = document.createElement("button");
     searchButton.classList.add("boton-Alergia")
     searchButton.innerText = "Siguiente";
-
-    searchButtonAtras.addEventListener("click", async () => {
-    showDieta();
-    hideAlergia(); 
-   
-    });
-
 
     searchButton.addEventListener("click", async () => {
     hideAlergia();
@@ -448,41 +415,22 @@ function crearBotonAlergia() {
     });
 
     boton.appendChild(searchButton);
-    boton2.appendChild(searchButtonAtras);
 }
 
 function crearBotonPais() {
-    const boton2 = document.getElementById("selectorPais");
-    const searchButtonAtras = document.createElement("button");
-    searchButtonAtras.classList.add("boton-pais-atras")
-    searchButtonAtras.innerText = "Atras";
-
-
     const boton = document.getElementById("selectorPais");
     const searchButton = document.createElement("button");
     searchButton.classList.add("boton-Pais")
     searchButton.innerText = "Siguiente";
-
-    searchButtonAtras.addEventListener("click", async () => {
-        
-    hidePais();
-    showAlergia();
-    hideBoton();
-    hideBotonReset();
-    });
-    
 
     searchButton.addEventListener("click", async () => {
         
     hidePais(); 
     showCalorias();
     showBoton();
-   
-   
-});
-    
+    });
+
     boton.appendChild(searchButton);
-    boton2.appendChild(searchButtonAtras);
 }
 
 function crearBotonBusqueda() {
@@ -491,22 +439,7 @@ function crearBotonBusqueda() {
     searchButton.classList.add("boton-buscar")
     searchButton.innerText = "Buscar";
 
-    const boton2 = document.getElementById("selectorBoton");
-    const searchButtonAtras = document.createElement("button");
-    searchButtonAtras.classList.add("boton-boton-atras")
-    searchButtonAtras.innerText = "Atras";
 
-
-    searchButtonAtras.addEventListener("click", async () => {
-        
-        showPais();
-        hideBoton();
-        hideCalorias();
-       
-        });
-     
-       
-    
     searchButton.addEventListener("click", async () => {
        
               
@@ -514,39 +447,12 @@ function crearBotonBusqueda() {
         await displayResults(query);
         hideCalorias(); 
         hideBoton();
-        showBotonReset();
        
     });
-    
+
     boton.appendChild(searchButton);
-    boton2.appendChild(searchButtonAtras);
+   
 }
-
-
-
-
-function crearBotonReset() {
-    const boton = document.getElementById("selectorBotonReset");
-    const searchButton = document.createElement("button");
-    searchButton.classList.add("boton-reset")
-    searchButton.innerText = "Reset";
-
-     
-
-    searchButton.addEventListener("click", async () => {
-        
-        hideBoton();
-        hideCalorias();
-        showComida();
-        hideBotonReset();
-        const contenedor = document.getElementById("results");
-        contenedor.innerHTML = "";
-        });
-
-boton.appendChild(searchButton);
-
-}
-
 
 
 
@@ -592,8 +498,8 @@ async function displayResults(query) {
 
             const imagen = document.createElement("img");
             const titulo = document.createElement("h4");
-            const ingredientes = document.createElement("p");
-            //const calories = document.createElement("p");
+            //const ingredientes = document.createElement("p");
+            const calories = document.createElement("p");
             const link = document.createElement("a");
 
             titulo.innerText = receta.label;
@@ -601,13 +507,13 @@ async function displayResults(query) {
             link.href = receta.url;
             link.target = "_blank";
             link.innerText = "Ir a la receta";
-            ingredientes.innerText = receta.ingredientLines;
-           // calories.innerText = receta.calories;
+            //ingredientes.innerText = receta.ingredients.map(ing => ing.text).join(", ");
+            calories.innerText = receta.calories;
 
             recetaElement.appendChild(imagen);
             recetaElement.appendChild(titulo);
-            recetaElement.appendChild(ingredientes);
-            //recetaElement.appendChild(calories);
+            //recetaElement.appendChild(ingredientes);
+            recetaElement.appendChild(calories);
             recetaElement.appendChild(link);
 
             contenedor.appendChild(recetaElement);
@@ -671,6 +577,5 @@ createAllergyCheckboxes()
 createDietCheckboxes()
 createSearchInput()
 crearBotonBusqueda()
-crearBotonReset() 
 crearBotonBusqueda2()
  
